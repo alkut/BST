@@ -23,28 +23,60 @@ class BaseIteratorKeyValue;
 
 template<class TKey, template<class> class TNode>
 class BaseIteratorKeyOnly {
+public:
     std::vector<TNode<TKey>*> parents = {};
     const TKey& operator *() const;
-    BaseIteratorKeyOnly& operator ++();
+
+    virtual BaseIteratorKeyOnly& operator ++();
+private:
+    void goLeft();
+    void goRight();
+    /// if went left
+    bool goUp();
 };
 
+template<class TKey, template <class> class TNode>
+bool BaseIteratorKeyOnly<TKey, TNode>::goUp() {
+    auto parent = parents.back();
+    parents.pop_back();
+    return parent->left == parents.back();
+}
+
+template<class TKey, template <class> class TNode>
+void BaseIteratorKeyOnly<TKey, TNode>::goRight() {
+    parents.push_back(parents.back()->right);
+}
+
+template<class TKey, template <class> class TNode>
+void BaseIteratorKeyOnly<TKey, TNode>::goLeft() {
+    parents.push_back(parents.back()->left);
+}
 
 
 template<class TKey, template <class> class TNode>
 BaseIteratorKeyOnly<TKey, TNode>&
 BaseIteratorKeyOnly<TKey, TNode>::operator++() {
+    if (parents.empty()) {
+        throw std::out_of_range("attempt to read nullptr in BaseIteratorKeyOnly::operator++");
+    }
     auto cur = parents.back();
     if (cur->right != nullptr) {
-        cur = cur->right;
-        parents.push_back(cur);
+        goRight();
 
-        while (true) {
-            cur = cur->left;
-            if (cur != nullptr) {
-                parents.push_back(cur);
-            } else {
-                return *this;
-            }
+        while (parents.back() != nullptr) {
+            goLeft();
+        }
+
+        parents.pop_back();
+        return *this;
+    }
+    while (true) {
+        if (parents.size() == 1) {
+            parents = {};
+            return *this;
+        }
+        if (goUp()) {
+            return *this;
         }
     }
     return *this;
