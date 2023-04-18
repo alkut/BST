@@ -17,9 +17,9 @@ include(cmake/EnableSanitize.cmake)
 include(cmake/EnableLinter.cmake)
 
 
-if ( BUILD_DOC )
+if ( BUILD_DOCS )
     include(cmake/EnableDocs.cmake)
-endif ( BUILD_DOC )
+endif ( BUILD_DOCS )
 
 if ( BUILD_TESTS )
     include(cmake/EnableTests.cmake)
