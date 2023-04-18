@@ -4,15 +4,15 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: alexxlalex/bst-build:latest
+    container: alexxlalex/bst-build_lib:latest
     steps:
       - name: Clone
         uses: actions/checkout@v1
       - name: Build
-        run: cmake -DBUILD_TESTS=on -DCMAKE_BUILD_TYPE=Release -S . -B ./build && cmake --build ./build -j4
+        run: cmake -DBUILD_TESTS=on -DCMAKE_BUILD_TYPE=Release -S . -B ./build_lib && cmake --build_lib ./build_lib -j4
       - name: Test
-        working-directory: ./build
+        working-directory: ./build_lib
         run: ctest
       - name: Run lint
         continue-on-error: true
-        run: cmake --build ./build --target cpplint
+        run: cmake --build_lib ./build_lib --target cpplint

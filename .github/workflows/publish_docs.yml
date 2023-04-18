@@ -23,11 +23,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Build docs
-        run: cmake -DBUILD_DOCS=on -S . -B ./build && cmake --build ./build --target docs
+        run: cmake -DBUILD_DOCS=on -S . -B ./build_lib && cmake --build_lib ./build_lib --target docs
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Build with Jekyll
-        uses: actions/jekyll-build-pages@v1
+        uses: actions/jekyll-build_lib-pages@v1
         with:
           source: ./docs/html
           destination: ./_site
@@ -39,7 +39,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: build
+    needs: build_lib
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
