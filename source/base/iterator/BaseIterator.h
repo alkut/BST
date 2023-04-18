@@ -28,7 +28,8 @@ public:
     const TKey& operator *() const;
 
     virtual BaseIteratorKeyOnly& operator ++();
-private:
+
+protected:
     void goLeft();
     void goRight();
     /// if went left
