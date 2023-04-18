@@ -9,7 +9,7 @@ jobs:
       - name: Clone
         uses: actions/checkout@v1
       - name: Build
-        run: cmake -DBUILD_TESTS=on -DCMAKE_BUILD_TYPE=Release -S . -B ./build_lib && cmake --build_lib ./build_lib -j4
+        run: cmake -DBUILD_TESTS=on -DCMAKE_BUILD_TYPE=Release -S . -B ./build && cmake --build ./build -j4
       - name: Test
         working-directory: ./build_lib
         run: ctest
