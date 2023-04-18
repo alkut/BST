@@ -4,7 +4,7 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: alexxlalex/bst-build_lib:latest
+    container: alexxlalex/bst-build:latest
     steps:
       - name: Clone
         uses: actions/checkout@v1
