@@ -31,7 +31,7 @@ class BaseIteratorKeyOnly {
 
 
 template<class TKey, template <class> class TNode>
-typename BaseIteratorKeyOnly<TKey, TNode>::BaseIteratorKeyOnly&
+BaseIteratorKeyOnly<TKey, TNode>&
 BaseIteratorKeyOnly<TKey, TNode>::operator++() {
     auto cur = parents.back();
     if (cur->right != nullptr) {
