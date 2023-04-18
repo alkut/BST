@@ -11,7 +11,7 @@ jobs:
       - name: Build
         run: cmake -DBUILD_TESTS=on -DCMAKE_BUILD_TYPE=Release -S . -B ./build && cmake --build ./build -j4
       - name: Test
-        working-directory: ./build_lib
+        working-directory: ./build
         run: ctest
       - name: Run lint
         continue-on-error: true
