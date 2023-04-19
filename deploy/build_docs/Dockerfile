@@ -7,4 +7,7 @@ RUN \
     gcc \
     g++ \
     cmake \
-    doxygen
+    doxygen \
+    doxygen-doc \
+    doxygen-gui \
+    graphviz

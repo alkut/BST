@@ -56,9 +56,9 @@ private:
     TNode<TKey> *root = nullptr;
     size_t size_ = 0;
     BaseIteratorKeyOnly<TKey, TNode> begin_;
-    BaseIteratorKeyOnly<TKey, TNode> end_;
+    const BaseIteratorKeyOnly<TKey, TNode> end_ = {};
     ReverseIteratorKeyOnly<TKey, TNode> rbegin_;
-    ReverseIteratorKeyOnly<TKey, TNode> rend_;
+    const ReverseIteratorKeyOnly<TKey, TNode> rend_ = {};
 };
 
 template<class TKey, template<class> class TNode, class TComparator, class TAllocator>
