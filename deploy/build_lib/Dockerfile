@@ -4,10 +4,10 @@ RUN \
     apt-get -y update && \
     apt-get -y upgrade && \
     apt-get -y install \
-    build_lib-essential \
+    build-essential \
     pkg-config \
     valgrind \
-    python3-pip \
+    cpplint \
     wget \
     tar \
     zip \
@@ -21,5 +21,4 @@ RUN \
     cmake --build /benchmark-1.7.1/build --config Release && \
     cmake --build /benchmark-1.7.1/build --config Release --target install && \
     rm -rf /benchmark-1.7.1 && \
-    rm /benchmark.tar.gz && \
-    pip install cpplint
+    rm /benchmark.tar.gz
